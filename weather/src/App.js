@@ -1,8 +1,29 @@
-import React from 'react';
+import React , {useEffect, useState} from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
+const WEATHER_API_KEY = "10e295f3e3f3b5cdde7ea86fc5c6d5b2";
 
 function App() {
+  const [lat , setLat] = useState(10);
+  const [lon , setLon] = useState(40);
+  useEffect(()=>{
+      if ("geolocation" in navigator) {
+        navigator.geolocation.watchPosition(function(position) {
+          setLat(position.coords.latitude);
+          setLon(position.coords.longitude);
+                  });
+      } else {
+        /* la géolocalisation n'est pas disponible */
+      }
+    },[])
+
+
+    const getTemperature = (lat , lon , nbrJour) => {
+      // votre code 
+    }
+    // le but de l'exercice est d'afficher la meteo du jour en focntion des coordonées GPS recuperé au dessus . 
+
   return (
     <div className="App">
       <header className="App-header">
